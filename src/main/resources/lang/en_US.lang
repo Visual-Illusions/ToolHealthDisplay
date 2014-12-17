@@ -1,0 +1,13 @@
+;# {name} - English (US) Language File
+;# Copyright © {copyright.years} Visual Illusions Entertainment
+;# Licensed under the {gpl.type}
+;# This file NEEDS to be in UTF-8 format!
+;# This file is also the default Language file and needs to be included
+;# DO NOT MODIFY THIS FILE! clone the file to create new translations.
+;# Saving the new file as <localeCode>.lang
+
+nontool=You are not holding a known tool.
+worn=Your tool is close to breaking.
+badlyworn=Your tool is dangerously close to breaking.
+breaking=Your tool will likely break on next use.
+health.is=Your tool's health is
