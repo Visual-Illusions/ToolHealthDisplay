@@ -17,8 +17,6 @@
  */
 package net.visualillusionsent.toolhealthdisplay;
 
-import net.visualillusionsent.minecraft.plugin.ChatFormat;
-
 /**
  * Copyright (C) 2014 Visual Illusions Entertainment
  * All Rights Reserved.
@@ -30,5 +28,5 @@ public enum ToolStatus {
     FINE,
     WORN,
     BADLYWORN,
-    BREAKING;
+    BREAKING
 }
