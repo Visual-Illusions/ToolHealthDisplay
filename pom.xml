@@ -15,7 +15,7 @@ Copyright © 2012-2014 Visual Illusions Entertainment
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mcpluginlib.version>1.2.0-SNAPSHOT</mcpluginlib.version>
-        <canary.main.class>${project.groupId}.${project.artifactId}.${project.name}</canary.main.class>
+        <canary.main.class>${project.groupId}.${project.artifactId}.canary.CanaryTHD</canary.main.class>
         <status.url>http://status.visualillusionsent.net/</status.url>
         <devs>darkdiplomat</devs>
         <build.number/>
