@@ -19,6 +19,11 @@ Copyright © 2012-2014 Visual Illusions Entertainment
         <status.url>http://status.visualillusionsent.net/</status.url>
         <devs>darkdiplomat</devs>
         <build.number/>
+        <!-- Jar Signing -->
+        <keystore.path/>
+        <keystore.pass/>
+        <keystore.alias/>
+        <keystore.key.pass/>
     </properties>
     <organization>
         <name>Visual Illusions Entertainment</name>
@@ -90,7 +95,7 @@ Copyright © 2012-2014 Visual Illusions Entertainment
         <!-- Mods End -->
     </dependencies>
     <build>
-        <finalName>${project.name}-${project.version}-${build.number}</finalName>
+        <finalName>${project.name}-${project.version}</finalName>
         <plugins>
             <!-- Timestamp for year -->
             <plugin>
@@ -280,4 +285,58 @@ Copyright © 2012-2014 Visual Illusions Entertainment
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <!-- Add Build number to a Jenkins build -->
+        <profile>
+            <id>jenkins</id>
+            <activation>
+                <property>
+                    <name>BUILD_NUMBER</name>
+                </property>
+            </activation>
+            <properties>
+                <build.number>-b${BUILD_NUMBER}</build.number>
+            </properties>
+        </profile>
+        <!-- Should remain last profile -->
+        <profile>
+            <id>sign-jar</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jarsigner-plugin</artifactId>
+                        <version>1.3.2</version>
+                        <executions>
+                            <execution>
+                                <id>sign</id>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <archiveDirectory>target/</archiveDirectory>
+                            <excludes>
+                                <exclude>*.jar</exclude>
+                            </excludes>
+                            <includes>
+                                <include>ToolHealthDisplay*.jar</include>
+                            </includes>
+                            <keystore>${keystore.path}</keystore>
+                            <alias>${keystore.alias}</alias>
+                            <storepass>${keystore.pass}</storepass>
+                            <keypass>${keystore.key.pass}</keypass>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
