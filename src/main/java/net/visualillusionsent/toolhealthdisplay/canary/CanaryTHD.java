@@ -20,6 +20,7 @@ package net.visualillusionsent.toolhealthdisplay.canary;
 import net.visualillusionsent.minecraft.plugin.canary.VisualIllusionsCanaryPlugin;
 import net.visualillusionsent.toolhealthdisplay.StatusTranslator;
 import net.visualillusionsent.toolhealthdisplay.ToolHealthDisplay;
+import net.visualillusionsent.utils.PropertiesFile;
 
 /**
  * Copyright (C) 2014 Visual Illusions Entertainment
@@ -34,7 +35,8 @@ public final class CanaryTHD extends VisualIllusionsCanaryPlugin implements Tool
     public final boolean enable(){
         try {
             super.enable();
-            translator = new StatusTranslator(this, "en_US", true);
+            verifyConfiguration();
+            translator = new StatusTranslator(this, getConfig().getString("defaultLocale"), getConfig().getBoolean("updateLang"));
             new ToolHealthListener(this);
 
             // Good, return true
@@ -56,5 +58,14 @@ public final class CanaryTHD extends VisualIllusionsCanaryPlugin implements Tool
     @Override
     public final StatusTranslator getTranslator() {
         return translator;
+    }
+
+    private void verifyConfiguration() {
+        PropertiesFile cfg = getConfig();
+        cfg.getBoolean("updateLang", true);
+        cfg.setComments("updateLang", "Whether to auto-update the language files or not");
+        cfg.getString("defaultLocale", "en_US");
+        cfg.setComments("The default language locale fall back to if a locale isn't found for a user.");
+        cfg.save();
     }
 }
