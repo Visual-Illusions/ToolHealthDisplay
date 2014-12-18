@@ -71,7 +71,7 @@ public enum ToolType {
 
     public static ToolType fromNativeName(String nmsName){
         String stripped = nmsName.replaceAll("(minecraft:)?(\\w)(:.+)?", "$2");
-        System.out.println("Original: " + nmsName + " Stripped: " + stripped);
+        //System.out.println("Original: " + nmsName + " Stripped: " + stripped);
         return idMap.containsKey(stripped) ? idMap.get(stripped) : NONTOOL;
     }
 
