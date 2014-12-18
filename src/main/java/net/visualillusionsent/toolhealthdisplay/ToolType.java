@@ -46,10 +46,10 @@ public enum ToolType {
     IRONPICKAXE("iron_pickaxe", 251),
     IRONAXE("iron_axe", 251),
     // GOLD TOOLS
-    GOLDHOE("gold_hoe", 32),
-    GOLDSHOVEL("gold_shovel", 32),
-    GOLDPICKAXE("gold_pickaxe", 32),
-    GOLDAXE("gold_axe", 32),
+    GOLDHOE("golden_hoe", 32),
+    GOLDSHOVEL("golden_shovel", 32),
+    GOLDPICKAXE("golden_pickaxe", 32),
+    GOLDAXE("golden_axe", 32),
     // DIAMOND TOOLS
     DIAMONDHOE("diamond_hoe", 1562),
     DIAMONDSHOVEL("diamond_shovel", 1562),
@@ -70,7 +70,8 @@ public enum ToolType {
     }
 
     public static ToolType fromNativeName(String nmsName){
-        String stripped = nmsName.replaceAll("(minecraft:)?(.+)(:.+)?", "$2");
+        String stripped = nmsName.replaceAll("(minecraft:)?(\\w)(:.+)?", "$2");
+        System.out.println("Original: " + nmsName + " Stripped: " + stripped);
         return idMap.containsKey(stripped) ? idMap.get(stripped) : NONTOOL;
     }
 

@@ -40,7 +40,7 @@ import net.visualillusionsent.toolhealthdisplay.ToolType;
  * @author Jason Jones (darkdiplomat)
  */
 public final class ToolHealthListener extends VisualIllusionsCanaryPluginInformationCommand implements PluginListener {
-    private final String outOf = ChatFormat.CYAN.concat("%s %s%d").concat(ChatFormat.CYAN.stringValue()).concat("/").concat(ChatFormat.LIGHT_GREEN.stringValue()).concat("%d");
+    private final String outOf = ChatFormat.CYAN.concat("%s %s%d").concat(ChatFormat.CYAN.toString()).concat("/").concat(ChatFormat.LIGHT_GREEN.toString()).concat("%d");
 
     public ToolHealthListener(CanaryTHD plugin) throws CommandDependencyException {
         super(plugin);
