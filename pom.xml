@@ -7,7 +7,7 @@ Copyright © 2012-2014 Visual Illusions Entertainment
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.visualillusionsent</groupId>
     <artifactId>toolhealthdisplay</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>2.0.0</version>
     <name>ToolHealthDisplay</name>
     <description>Minecraft Plugin to give warnings about tool health</description>
     <url>http://wiki.visualillusionsent.net/view/ToolHealthDisplay/</url>
