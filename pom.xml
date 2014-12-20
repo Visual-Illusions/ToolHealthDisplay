@@ -18,7 +18,11 @@ Copyright © 2012-2014 Visual Illusions Entertainment
         <canary.main.class>${project.groupId}.${project.artifactId}.canary.CanaryTHD</canary.main.class>
         <status.url>http://status.visualillusionsent.net/</status.url>
         <devs>darkdiplomat</devs>
+        <license.type>GNU General Public License v3</license.type>
+        <license.url>http://www.gnu.org/licenses/gpl.html</license.url>
+        <copyright.years>${project.inceptionYear}-${current.year}</copyright.years>
         <build.number/>
+        <build.number.display/>
         <!-- Jar Signing -->
         <keystore.path/>
         <keystore.pass/>
@@ -95,7 +99,18 @@ Copyright © 2012-2014 Visual Illusions Entertainment
         <!-- Mods End -->
     </dependencies>
     <build>
-        <finalName>${project.name}-${project.version}${build.number}</finalName>
+        <finalName>${project.name}-${project.version}${build.number.display}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>*.inf</include>
+                    <include>META-INF/**</include>
+                    <include>resources/**</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <!-- Timestamp for year -->
             <plugin>
@@ -114,50 +129,6 @@ Copyright © 2012-2014 Visual Illusions Entertainment
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <!-- Update Plugin/Mod Description Files -->
-            <plugin>
-                <groupId>com.google.code.maven-replacer-plugin</groupId>
-                <artifactId>replacer</artifactId>
-                <version>1.5.2</version>
-                <executions>
-                    <execution>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>replace</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <includes>
-                        <!-- CanaryMod -->
-                        <include>target/**/*.inf</include>
-                        <!-- Other files -->
-                        <include>target/**/*.cfg</include>
-                        <include>target/**/*.txt</include>
-                        <include>target/**/*.lang</include>
-                        <include>target/**/*.readme</include>
-                    </includes>
-                    <replacements>
-                        <replacement>
-                            <token>{plugin.version}</token>
-                            <value>${project.version}</value>
-                        </replacement>
-                        <replace>
-                            <token>{copyright.years}</token>
-                            <value>${project.inceptionYear}-${current.year}</value>
-                        </replace>
-                        <replace>
-                            <token>{name}</token>
-                            <value>${project.name}</value>
-                        </replace>
-                        <replace>
-                            <token>{canary.main.class}</token>
-                            <value>${canary.main.class}</value>
-                        </replace>
-                    </replacements>
-                    <regex>false</regex>
-                </configuration>
             </plugin>
             <!-- Compile plugin -->
             <plugin>
@@ -193,7 +164,7 @@ Copyright © 2012-2014 Visual Illusions Entertainment
                             <Status-URL>${status.url}</Status-URL>
                             <Wiki-URL>${project.url}</Wiki-URL>
                             <Developers>${devs}</Developers>
-                            <Copyright>${project.inceptionYear}-${current.year}</Copyright>
+                            <Copyright>${copyright.years}</Copyright>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -224,7 +195,7 @@ Copyright © 2012-2014 Visual Illusions Entertainment
                     </mapping>
                     <properties>
                         <name>${project.name}</name>
-                        <years>${project.inceptionYear}-${current.year}</years>
+                        <years>${copyright.years}</years>
                         <gpl.type>GNU General Public License</gpl.type>
                         <license.url>http://www.gnu.org/licenses/gpl.html</license.url>
                     </properties>
@@ -295,7 +266,8 @@ Copyright © 2012-2014 Visual Illusions Entertainment
                 </property>
             </activation>
             <properties>
-                <build.number>-b${BUILD_NUMBER}</build.number>
+                <build.number>${BUILD_NUMBER}</build.number>
+                <build.number.display>-b${BUILD_NUMBER}</build.number.display>
             </properties>
         </profile>
         <!-- Should remain last profile -->
